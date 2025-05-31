@@ -1,7 +1,5 @@
 import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
-import crypto from "crypto";
-import { CreateBasketCardValues } from "@/@types/basket";
 
 export async function GET(req: NextRequest) {
   try {

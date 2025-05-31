@@ -9,11 +9,10 @@ interface Props {
      name: string;
      ingredients?: Ingredient[];
      price: number;
-     onSubmit: VoidFunction
 }
 
 export const ProductForm: React.FC<Props> = (props) => {
-     const {className, imgUrl, name, price, ingredients, onSubmit} = props;
+     const {className, imgUrl, name, price, ingredients} = props;
      return (
         <div className={cn("flex gap-5", className)}>
             <img src={imgUrl} alt={name} width={450} height={450}/>
@@ -21,7 +20,7 @@ export const ProductForm: React.FC<Props> = (props) => {
             <Title size={'s'} text={name}/>
             <p className='text-gray-400'>Lorem, ipsum dolor.</p>
             <p>{ingredients?.map(el => el.name).join(", ")}</p>
-            <Button className='mt-auto' onClick={onSubmit}>В корзину{price} RUB</Button>
+            <Button className='mt-auto' >В корзину{price} RUB</Button>
             </div>
         </div>
     );

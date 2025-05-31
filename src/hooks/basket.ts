@@ -1,16 +1,14 @@
-import { CreateBasketCardValues, IBasketCard } from "@/@types/basket";
 import { fetcher } from "@/lib/fetcher";
 import { getBasketDetails } from "@/lib/get-basket-details";
 import { ApiRouts } from "@/services/constants";
-import { axiosInstance } from "@/services/instance";
 import useSWR from "swr";
 
 interface ReturnProps {
-  items: IBasketCard[];
+  items: any[];
   totalAmount: number;
   error: boolean;
   isLoading: boolean;
-  addProduct: (values: CreateBasketCardValues) => Promise<void>;
+  addProduct: (values: any) => Promise<void>;
   removeProduct: (id: number) => Promise<void>;
   updateProduct: (id: number, quantity: number) => Promise<void>;
 }
@@ -28,21 +26,9 @@ export const useBasket = (): ReturnProps => {
       ? getBasketDetails(basket)
       : { items: [], totalAmount: 0 };
 
-  const addProduct = async (values: CreateBasketCardValues) => {
-    const updateData = (await axiosInstance.post(ApiRouts.BASKET, values)).data;
-    mutate(getBasketDetails(updateData));
-  };
-  const removeProduct = async (id: number) => {
-    const updateData = (await axiosInstance.delete(ApiRouts.BASKET + "/" + id))
-      .data;
-    mutate(getBasketDetails(updateData));
-  };
-  const updateProduct = async (id: number, quantity: number) => {
-    const updateData = (
-      await axiosInstance.patch(ApiRouts.BASKET + "/" + id, { quantity })
-    ).data;
-    mutate(getBasketDetails(updateData));
-  };
+  const addProduct = async (values: any) => {};
+  const removeProduct = async (id: number) => {};
+  const updateProduct = async (id: number, quantity: number) => {};
 
   return {
     items: data.items,

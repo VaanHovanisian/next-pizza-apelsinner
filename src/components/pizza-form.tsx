@@ -17,11 +17,10 @@ interface Props {
   name: string;
   ingredients: Ingredient[];
   variants: Variation[];
-  onSubmit: VoidFunction;
 }
 
 export const PizzaForm: React.FC<Props> = (props) => {
-  const { className, imgUrl, name, variants, ingredients, onSubmit } = props;
+  const { className, imgUrl, name, variants, ingredients } = props;
 
   const {
     size,
@@ -71,9 +70,7 @@ export const PizzaForm: React.FC<Props> = (props) => {
             />
           ))}
         </ul>
-        <Button className="mt-auto" onClick={onSubmit}>
-          В корзину {totalPrice} RUB
-        </Button>
+        <Button className="mt-auto">В корзину {totalPrice} RUB</Button>
       </div>
     </div>
   );

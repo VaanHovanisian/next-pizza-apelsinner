@@ -1,8 +1,9 @@
-import { BasketDTO, IBasketCard } from "@/@types/basket";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { BasketDTO } from "@/@types/basket";
 import { calcBasketPrice } from "./calc-basket-price";
 
 interface ReturnProps {
-  items: IBasketCard[];
+  items: any[];
   totalAmount: number;
 }
 

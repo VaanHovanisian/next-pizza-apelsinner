@@ -1,11 +1,10 @@
-import { IBasketCard } from "@/@types/basket";
 import { PizzaSize, PizzaType } from "@/@types/pizza";
 import { objPizzaTypes } from "@/constants/pizza";
 
 export const getBasketCardDetails = (
   pizzaType: PizzaType,
   pizzaSize: PizzaSize,
-  ingredients: IBasketCard["ingredients"]
+  ingredients: Array<{ name: string; price: number }>
 ) => {
   const result = [];
 
