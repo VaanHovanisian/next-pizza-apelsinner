@@ -24,12 +24,14 @@ async function create() {
         email: "barbaraggg@gail.com",
         password: "asdfgh",
         role: "ADMIN",
+        verified: new Date(),
       },
       {
         fullName: "Melman",
         email: "melman@gail.com",
         password: "12345",
         role: "USER",
+        verified: new Date(),
       },
     ],
   });
