@@ -22,7 +22,7 @@ interface Props {
 
 export const Basket: React.FC<Props> = (props) => {
   const { className, children } = props;
-  const { items, totalAmount, updateProduct, removeProduct } = useBasket();
+  const { items, totalAmount } = useBasket();
 
   return (
     <Sheet>
@@ -46,13 +46,8 @@ export const Basket: React.FC<Props> = (props) => {
                 el.ingredients
               )}
               quantity={el.quantity}
-              onClickDecrement={async () =>
-                await updateProduct(el.id, el.quantity - 1)
-              }
-              onClickIncrement={async () =>
-                await updateProduct(el.id, el.quantity + 1)
-              }
-              onClickRemove={() => removeProduct(el.id)}
+              onClickDecrement={() => {}}
+              onClickIncrement={() => {}}
             />
           ))}
         </div>

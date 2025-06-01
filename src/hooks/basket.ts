@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetcher } from "@/lib/fetcher";
 import { getBasketDetails } from "@/lib/get-basket-details";
 import { ApiRouts } from "@/services/constants";
+import { axiosInstance } from "@/services/instance";
 import useSWR from "swr";
 
 interface ReturnProps {
@@ -8,8 +10,6 @@ interface ReturnProps {
   totalAmount: number;
   error: boolean;
   isLoading: boolean;
-  addProduct: (values: any) => Promise<void>;
-  removeProduct: (id: number) => Promise<void>;
   updateProduct: (id: number, quantity: number) => Promise<void>;
 }
 
@@ -26,17 +26,18 @@ export const useBasket = (): ReturnProps => {
       ? getBasketDetails(basket)
       : { items: [], totalAmount: 0 };
 
-  const addProduct = async (values: any) => {};
-  const removeProduct = async (id: number) => {};
-  const updateProduct = async (id: number, quantity: number) => {};
+  const updateProduct = async (id: number, quantity: number) => {
+    const updateData = (
+      await axiosInstance.patch(ApiRouts.BASKET + "/" + id, { quantity })
+    ).data;
+    mutate([]);
+  };
 
   return {
     items: data.items,
     totalAmount: data.totalAmount,
     error,
     isLoading,
-    addProduct,
-    removeProduct,
     updateProduct,
   };
 };

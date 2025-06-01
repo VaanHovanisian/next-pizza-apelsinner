@@ -15,7 +15,6 @@ interface Props {
   quantity: number;
   onClickIncrement: () => void;
   onClickDecrement: () => void;
-  onClickRemove: () => void;
 }
 
 export const BasketCard: React.FC<Props> = (props) => {
@@ -28,7 +27,6 @@ export const BasketCard: React.FC<Props> = (props) => {
     quantity,
     onClickDecrement,
     onClickIncrement,
-    onClickRemove,
   } = props;
   return (
     <div className={cn("flex items-start gap-4 p-4", className)}>
@@ -47,7 +45,7 @@ export const BasketCard: React.FC<Props> = (props) => {
           />
           <div className="flex items-center gap-2">
             <span className="font-bold text-lg">{price} ₽</span>
-            <button onClick={onClickRemove}>
+            <button>
               <Trash2Icon />
             </button>
           </div>
