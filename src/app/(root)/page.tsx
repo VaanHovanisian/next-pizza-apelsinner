@@ -1,4 +1,4 @@
-import { Card, Catalog, Container, Filter, TopBar } from "@/components";
+import { Catalog, Container, Filter, TopBar } from "@/components";
 import { prisma } from "@/prisma/prisma-client";
 
 export default async function Home() {
@@ -7,7 +7,7 @@ export default async function Home() {
       products: {
         include: {
           ingredients: true,
-          variants: true
+          variants: true,
         },
       },
     },
@@ -15,7 +15,7 @@ export default async function Home() {
 
   return (
     <>
-      <TopBar categories={categories.filter(el => el.products.length > 0)} />
+      <TopBar categories={categories.filter((el) => el.products.length > 0)} />
       <Container className="flex mt-8 items-start gap-[80px]">
         <Filter className="sticky" />
         <div className="flex flex-col gap-3">

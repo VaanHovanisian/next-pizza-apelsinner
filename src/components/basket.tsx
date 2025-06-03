@@ -46,12 +46,8 @@ export const Basket: React.FC<Props> = (props) => {
                 el.ingredients
               )}
               quantity={el.quantity}
-              onClickDecrement={async () =>
-                await updateProduct(el.id, el.quantity - 1)
-              }
-              onClickIncrement={async () =>
-                await updateProduct(el.id, el.quantity + 1)
-              }
+              onClickDecrement={() => updateProduct(el.id, el.quantity - 1)}
+              onClickIncrement={() => updateProduct(el.id, el.quantity + 1)}
               onClickRemove={() => removeProduct(el.id)}
             />
           ))}

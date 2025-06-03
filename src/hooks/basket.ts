@@ -10,9 +10,9 @@ interface ReturnProps {
   totalAmount: number;
   error: boolean;
   isLoading: boolean;
-  addProduct: (values: CreateBasketCardValues) => Promise<void>;
-  removeProduct: (id: number) => Promise<void>;
   updateProduct: (id: number, quantity: number) => Promise<void>;
+  removeProduct: (id: number) => Promise<void>;
+  addProduct: (values: CreateBasketCardValues) => Promise<void>;
 }
 
 export const useBasket = (): ReturnProps => {
@@ -28,19 +28,21 @@ export const useBasket = (): ReturnProps => {
       ? getBasketDetails(basket)
       : { items: [], totalAmount: 0 };
 
-  const addProduct = async (values: CreateBasketCardValues) => {
-    const updateData = (await axiosInstance.post(ApiRouts.BASKET, values)).data;
+  const updateProduct = async (id: number, quantity: number) => {
+    const updateData = (
+      await axiosInstance.patch(ApiRouts.BASKET + "/" + id, { quantity })
+    ).data;
     mutate(getBasketDetails(updateData));
   };
+
   const removeProduct = async (id: number) => {
     const updateData = (await axiosInstance.delete(ApiRouts.BASKET + "/" + id))
       .data;
     mutate(getBasketDetails(updateData));
   };
-  const updateProduct = async (id: number, quantity: number) => {
-    const updateData = (
-      await axiosInstance.patch(ApiRouts.BASKET + "/" + id, { quantity })
-    ).data;
+
+  const addProduct = async (values: CreateBasketCardValues) => {
+    const updateData = (await axiosInstance.post(ApiRouts.BASKET, values)).data;
     mutate(getBasketDetails(updateData));
   };
 
@@ -49,8 +51,8 @@ export const useBasket = (): ReturnProps => {
     totalAmount: data.totalAmount,
     error,
     isLoading,
-    addProduct,
-    removeProduct,
     updateProduct,
+    removeProduct,
+    addProduct,
   };
 };

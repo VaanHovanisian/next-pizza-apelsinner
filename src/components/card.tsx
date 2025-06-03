@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { Plus, SlidersHorizontal } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 import { Button } from "./ui";
 import { Ingredient } from "@prisma/client";
@@ -17,6 +16,7 @@ interface Props {
 
 export const Card: React.FC<Props> = (props) => {
   const { className, img, title, description, price, id } = props;
+
   return (
     <div
       className={cn(
@@ -24,7 +24,7 @@ export const Card: React.FC<Props> = (props) => {
         className
       )}
     >
-        <Link className="absolute inset-0 z-1" href={`/product/${id}`}/>
+      <Link className="absolute inset-0 z-1" href={`/product/${id}`} />
       <div className="rounded-2xl bg-[#fff7ee] mb-2 p-2 flex justify-center items-center relative">
         <img src={img} alt={title} width={285} height={259} />
         <button>

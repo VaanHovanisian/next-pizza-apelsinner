@@ -12,6 +12,7 @@ interface ReturnProps {
   selectedIngredients: Set<number>;
   filteredPizzaSizes: Variant[];
   setSelectedIngredients: (id: number) => void;
+  activeVariantId?: number;
 }
 
 export const usePizzaOptions = (
@@ -24,6 +25,10 @@ export const usePizzaOptions = (
     new Set<number>([])
   );
   const filteredPizzaSizes = getPizzaSize(type, variants, pizzaSizes);
+
+  const activeVariantId = variants.find(
+    (el) => el.size === size && el.pizzaType === type
+  )?.id;
 
   React.useEffect(() => {
     const isPizza = filteredPizzaSizes.find((el) => !el.disabled);
@@ -41,5 +46,6 @@ export const usePizzaOptions = (
     filteredPizzaSizes,
     selectedIngredients,
     setSelectedIngredients,
+    activeVariantId,
   };
 };

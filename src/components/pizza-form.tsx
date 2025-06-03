@@ -17,11 +17,11 @@ interface Props {
   name: string;
   ingredients: Ingredient[];
   variants: Variation[];
-  onSubmit: VoidFunction;
+  addToBasket: (variantId:number, ingredients:number[]) => void;
 }
 
 export const PizzaForm: React.FC<Props> = (props) => {
-  const { className, imgUrl, name, variants, ingredients, onSubmit } = props;
+  const { className, imgUrl, name, variants, ingredients, addToBasket } = props;
 
   const {
     size,
@@ -31,7 +31,14 @@ export const PizzaForm: React.FC<Props> = (props) => {
     filteredPizzaSizes,
     selectedIngredients,
     setSelectedIngredients,
+    activeVariantId,
   } = usePizzaOptions(variants, pizzaSizes);
+
+  const addProduct = () => {
+    if (activeVariantId) {
+      addToBasket(activeVariantId, Array.from(selectedIngredients));
+    }
+  };
 
   const totalPrice = calcPizzaPrice(
     size,
@@ -71,7 +78,7 @@ export const PizzaForm: React.FC<Props> = (props) => {
             />
           ))}
         </ul>
-        <Button className="mt-auto" onClick={onSubmit}>
+        <Button onClick={addProduct} className="mt-auto">
           В корзину {totalPrice} RUB
         </Button>
       </div>

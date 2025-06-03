@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import { Toaster } from "react-hot-toast";
 import { Header } from "@/components";
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal
+  modal,
 }: Readonly<{
   children: React.ReactNode;
   modal: React.ReactNode;
@@ -19,7 +19,7 @@ export default function RootLayout({
       <Header />
       <main>{children}</main>
       {modal}
-
+      <Toaster />
     </>
   );
 }
