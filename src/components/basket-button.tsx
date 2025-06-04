@@ -1,8 +1,10 @@
+"use client";
 import React from "react";
 import { Button } from "./ui";
 import { cn } from "@/lib/utils";
 import { ArrowRight, ShoppingCart } from "lucide-react";
 import { Basket } from "./basket";
+import { useBasket } from "@/hooks/basket";
 
 interface Props {
   className?: string;
@@ -10,14 +12,25 @@ interface Props {
 
 export const BasketButton: React.FC<Props> = (props) => {
   const { className } = props;
+  const { totalAmount, items, isLoading } = useBasket();
   return (
     <Basket>
-      <Button className={cn("group flex gap-[5px] text-[16px]", className)}>
-        <span className={cn("flex items-center gap-[13px]")}>520 ₽</span>
-        <span className="h-[25px] w-[1px] bg-[#fff]/25 font-bold "></span>
+      <Button
+        variant={isLoading ? "loading" : "default"}
+        className={cn("group flex gap-[5px] text-[16px]", className)}
+      >
+        <span className={cn("flex items-center gap-[13px]")}>
+          {totalAmount} ₽
+        </span>
+        <span
+          className={cn(
+            "h-[25px] w-[1px] bg-[#fff]/25 font-bold",
+            isLoading && "bg-gray-400"
+          )}
+        ></span>
         <span className="relative">
           <span className="group-hover:opacity-0 transition-opacity flex items-center gap-1">
-            <ShoppingCart /> 3
+            <ShoppingCart /> {items.length}
           </span>
           <ArrowRight
             size={16}

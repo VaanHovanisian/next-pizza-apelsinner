@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 
 interface ReturnProps {
@@ -25,6 +26,6 @@ export const useFilterCheckbox = (items: any[]): ReturnProps => {
     searchValue,
     setSearchValue,
     onClick,
-    list
-};
+    list,
+  };
 };

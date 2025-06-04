@@ -1,7 +1,6 @@
 import { getIngredients } from "@/services/ingredients";
 import { Ingredient } from "@prisma/client";
 import React from "react";
-import { useSet } from "react-use";
 
 export const useIngredients = () => {
   const [ingredients, setIngredients] = React.useState<Ingredient[]>([]);

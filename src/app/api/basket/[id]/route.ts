@@ -1,14 +1,12 @@
+import { ProductPageProps } from "@/@types/params";
 import { updateBasketTotalAmount } from "@/lib/update-basket-total-amount";
 import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(req: NextRequest, { params }: ProductPageProps) {
   try {
     const token = req.cookies.get("basketToken")?.value;
-    const id = +params.id;
+    const { id } = await params;
     const data = (await req.json()) as { quantity: number };
 
     if (!token) {
@@ -17,7 +15,7 @@ export async function PATCH(
 
     const basketCard = await prisma.cartProduct.findFirst({
       where: {
-        id,
+        id: Number(id),
       },
     });
 
@@ -41,13 +39,10 @@ export async function PATCH(
     return NextResponse.json({ error: "basket card not update" });
   }
 }
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(req: NextRequest, { params }: ProductPageProps) {
   try {
     const token = req.cookies.get("basketToken")?.value;
-    const id = +params.id;
+    const { id } = await params;
 
     if (!token) {
       return NextResponse.json({ message: "token not found" });
@@ -55,7 +50,7 @@ export async function DELETE(
 
     const basketCard = await prisma.cartProduct.findFirst({
       where: {
-        id,
+        id: Number(id),
       },
     });
 

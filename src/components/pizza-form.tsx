@@ -17,11 +17,20 @@ interface Props {
   name: string;
   ingredients: Ingredient[];
   variants: Variation[];
-  addToBasket: (variantId:number, ingredients:number[]) => void;
+  addToBasket: (variantId: number, ingredients: number[]) => void;
+  loading: boolean;
 }
 
 export const PizzaForm: React.FC<Props> = (props) => {
-  const { className, imgUrl, name, variants, ingredients, addToBasket } = props;
+  const {
+    className,
+    imgUrl,
+    name,
+    variants,
+    ingredients,
+    addToBasket,
+    loading,
+  } = props;
 
   const {
     size,
@@ -78,7 +87,11 @@ export const PizzaForm: React.FC<Props> = (props) => {
             />
           ))}
         </ul>
-        <Button onClick={addProduct} className="mt-auto">
+        <Button
+          onClick={addProduct}
+          className="mt-auto"
+          variant={loading ? "loading" : "default"}
+        >
           В корзину {totalPrice} RUB
         </Button>
       </div>

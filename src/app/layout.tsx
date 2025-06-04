@@ -1,7 +1,8 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
 
-export const nunito = Nunito({
+const nunito = Nunito({
+  subsets: ["cyrillic", "cyrillic-ext", "latin", "latin-ext"],
   variable: "--font-family",
   display: "swap",
   weight: ["400", "500", "600", "700", "800", "900"],

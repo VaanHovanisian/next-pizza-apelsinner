@@ -6,6 +6,7 @@ import { PriceSlider, FilterCheckboxGroup } from "./";
 import { useIngredients } from "@/hooks/useIngredients";
 import { useFilter } from "@/hooks/filter";
 import { useQueryFilter } from "@/hooks/query-filter";
+import { cn } from "@/lib/utils";
 
 interface Props {
   className?: string;
@@ -22,11 +23,11 @@ export const Filter: React.FC<Props> = (props) => {
   }));
 
   return (
-    <div className="sticky top-20">
+    <div className={cn("sticky top-20", className)}>
       <Title size="s" text="Фильтрация" />
       <FilterCheckboxGroup
         items={[
-          { name: "30 см", value: "30 "},
+          { name: "30 см", value: "30 " },
           { name: "40 см", value: "40" },
           { name: "50 см", value: "50" },
         ]}
