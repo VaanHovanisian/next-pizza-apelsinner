@@ -15,9 +15,10 @@ export const useQueryFilter = (filter: Filter) => {
       },
       { arrayFormat: "comma", encode: false }
     );
-    router.push(`?${query}`);
+    router.push(`?${query}`, { scroll: false });
   }, [
-    filter.price,
+    filter.price.priceFrom,
+    filter.price.priceTo,
     filter.selectedSizes,
     filter.selectedTypes,
     filter.selectedIngredients,

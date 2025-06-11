@@ -1,9 +1,12 @@
-import { ProductPageProps } from "@/@types/params";
 import { Container, Product } from "@/components";
 import { prisma } from "@/prisma/prisma-client";
 import { notFound } from "next/navigation";
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   try {
     const { id } = await params;
     if (!id) {

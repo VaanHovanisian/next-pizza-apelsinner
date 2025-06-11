@@ -1,14 +1,5 @@
+import { GetSearchParams } from "@/@types/params";
 import { prisma } from "@/prisma/prisma-client";
-
-export interface GetSearchParams {
-  query?: string;
-  sortBy?: string;
-  sizes?: string;
-  types?: string;
-  ingredients?: string;
-  priceFrom?: string;
-  priceTo?: string;
-}
 
 const DEFAULT_MIN_PRICE = 0;
 const DEFAULT_MAX_PRICE = 5000;
@@ -35,6 +26,7 @@ export const findPizzas = async (params: GetSearchParams) => {
             some: {
               pizzaType: { in: types },
               size: { in: sizes },
+              price: { gte: minPrice, lte: maxPrice },
             },
           },
         },

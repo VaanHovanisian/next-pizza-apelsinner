@@ -21,8 +21,12 @@ export const getBasketDetails = (data: BasketDTO): ReturnProps => {
     quantity: el.quantity,
   }));
 
+  const totalAmount = data?.products?.reduce((acc, el) => {
+    return acc + calcBasketPrice(el);
+  }, 0);
+
   return {
     items,
-    totalAmount: data.totalAmount,
+    totalAmount,
   };
 };

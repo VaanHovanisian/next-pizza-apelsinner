@@ -55,12 +55,12 @@ export async function POST(req: NextRequest) {
     const findFirstBasket = await prisma.cartProduct.findFirst({
       where: {
         cartId: userBasket.id,
-        variantId: data.variantId,
         ingredients: {
-          every: {
+          some: {
             id: { in: data.ingredients },
           },
         },
+        variantId: data.variantId,
       },
     });
 

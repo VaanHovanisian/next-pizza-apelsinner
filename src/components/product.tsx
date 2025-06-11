@@ -7,18 +7,20 @@ import toast from "react-hot-toast";
 
 interface Props {
   product: ProductRelation;
+  onSubmit?: VoidFunction;
 }
 
 export const Product: React.FC<Props> = (props) => {
-  const { product } = props;
+  const { product, onSubmit } = props;
   const isPizzaProduct = product.variants[0].pizzaType;
-  const { addProduct, loading } = useBasket();
+  const { addProduct, isValidating } = useBasket();
 
   const addToBasket = async (variantId?: number, ingredients?: number[]) => {
     try {
       const activeId = variantId ?? product.variants[0].id;
       await addProduct({ variantId: activeId, ingredients });
       toast.success("successfully added");
+      onSubmit?.();
     } catch (error) {
       console.log(error);
       toast.error("not added");
@@ -27,7 +29,7 @@ export const Product: React.FC<Props> = (props) => {
   if (isPizzaProduct) {
     return (
       <PizzaForm
-        loading={loading}
+        loading={isValidating}
         imgUrl={product.imgUrl}
         name={product.name}
         variants={product.variants}
@@ -38,7 +40,7 @@ export const Product: React.FC<Props> = (props) => {
   }
   return (
     <ProductForm
-      loading={loading}
+      loading={isValidating}
       imgUrl={product.imgUrl}
       name={product.name}
       price={product.variants[0].price}

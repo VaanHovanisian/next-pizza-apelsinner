@@ -30,7 +30,7 @@ export const Modal: React.FC<Props> = (props) => {
           className
         )}
       >
-        <Product product={product} />
+        <Product product={product} onSubmit={() => router.back()} />
       </DialogContent>
     </Dialog>
   );

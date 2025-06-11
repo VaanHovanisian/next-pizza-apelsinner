@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         loading:
-          "text-gray-400 bg-gray-400 transition-none pointer-events-none bg-[url(/spinner.webp)] bg-no-repeat bg-center bg-size-[20px]",
+          "text-gray-100 bg-gray-100 transition-none pointer-events-none bg-[url(/spinner.webp)] bg-no-repeat bg-center bg-size-[20px]",
         default:
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         destructive:

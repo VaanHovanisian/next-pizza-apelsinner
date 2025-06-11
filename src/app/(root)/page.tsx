@@ -1,7 +1,7 @@
 import { Catalog, Container, Filter, TopBar } from "@/components";
-import { findPizzas, GetSearchParams } from "@/lib/find-pizzas";
-import { prisma } from "@/prisma/prisma-client";
+import { findPizzas } from "@/lib/find-pizzas";
 import { Suspense } from "react";
+import { GetSearchParams } from "@/@types/params";
 
 export default async function Home({
   searchParams,

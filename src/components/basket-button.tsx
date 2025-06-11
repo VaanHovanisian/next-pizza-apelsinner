@@ -12,11 +12,12 @@ interface Props {
 
 export const BasketButton: React.FC<Props> = (props) => {
   const { className } = props;
-  const { totalAmount, items, isLoading } = useBasket();
+  const { totalAmount, items, isLoading, isValidating } = useBasket();
+
   return (
     <Basket>
       <Button
-        variant={isLoading ? "loading" : "default"}
+        variant={isLoading || isValidating ? "loading" : "default"}
         className={cn("group flex gap-[5px] text-[16px]", className)}
       >
         <span className={cn("flex items-center gap-[13px]")}>

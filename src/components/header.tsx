@@ -6,22 +6,28 @@ import { cn } from "@/lib/utils";
 
 interface Props {
   className?: string;
+  hasSearch?: boolean;
 }
 
 export const Header: React.FC<Props> = (props) => {
-  const { className } = props;
+  const { className, hasSearch = true } = props;
 
   return (
-    <div className={cn("mb-8 mt-8", className)}>
-      <Container className="gap-5 flex items-center justify-between">
+    <div className={cn("pb-8 pt-8", className)}>
+      <Container
+        className={cn(
+          "gap-5 flex items-center justify-between",
+          !hasSearch && "border-b border-b-gray-300 pb-8"
+        )}
+      >
         <Logo />
-        <SearchHeader className="flex-1" />
+        {hasSearch && <SearchHeader className="flex-1" />}
         <div className={cn("flex gap-[15px]")}>
           <Button variant="outline">
             <User />
             Войти
           </Button>
-          <BasketButton />
+          {hasSearch && <BasketButton />}
         </div>
       </Container>
     </div>

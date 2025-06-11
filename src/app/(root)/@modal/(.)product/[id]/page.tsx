@@ -21,11 +21,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     if (!product) {
       notFound();
     }
-    return (
-      <>
-        <Modal product={product} />
-      </>
-    );
+    return <Modal product={product} />;
   } catch (error) {
     console.log(error);
   }

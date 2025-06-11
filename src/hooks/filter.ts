@@ -1,6 +1,6 @@
 import React from "react";
 import { useSet } from "react-use";
-import { useSearchParams } from "next/navigation"; 
+import { useSearchParams } from "next/navigation";
 
 interface PriceProps {
   priceFrom?: number;
@@ -25,12 +25,13 @@ interface ReturnProps extends Filter {
 export const useFilter = (): ReturnProps => {
   const searchParams = useSearchParams();
   console.log(Array.from(searchParams));
-   
-const query = Object.fromEntries(Array.from(searchParams))
+
+  const query = Object.fromEntries(Array.from(searchParams));
+  console.log(query);
 
   const [price, setPrice] = React.useState<PriceProps>({
-    priceFrom: +query.priceFrom || undefined,
-    priceTo: +query.priceTo || undefined
+    priceFrom: +query?.priceFrom || undefined,
+    priceTo: +query?.priceTo || undefined,
   });
   const updatePrice = (name: keyof PriceProps, value: number) => {
     setPrice((prev) => ({

@@ -17,7 +17,7 @@ interface Props {
   name: string;
   ingredients: Ingredient[];
   variants: Variation[];
-  addToBasket: (variantId: number, ingredients: number[]) => void;
+  addToBasket: (variantId: number, ingredients: number[]) => Promise<void>;
   loading: boolean;
 }
 
@@ -31,7 +31,7 @@ export const PizzaForm: React.FC<Props> = (props) => {
     addToBasket,
     loading,
   } = props;
-
+  const [loadingIsAdd, setLoadingIsAdd] = React.useState(false);
   const {
     size,
     type,
@@ -43,9 +43,11 @@ export const PizzaForm: React.FC<Props> = (props) => {
     activeVariantId,
   } = usePizzaOptions(variants, pizzaSizes);
 
-  const addProduct = () => {
+  const addProduct = async () => {
     if (activeVariantId) {
-      addToBasket(activeVariantId, Array.from(selectedIngredients));
+      setLoadingIsAdd(true);
+      await addToBasket(activeVariantId, Array.from(selectedIngredients));
+      setLoadingIsAdd(false);
     }
   };
 
@@ -90,7 +92,7 @@ export const PizzaForm: React.FC<Props> = (props) => {
         <Button
           onClick={addProduct}
           className="mt-auto"
-          variant={loading ? "loading" : "default"}
+          variant={loadingIsAdd || loading ? "loading" : "default"}
         >
           В корзину {totalPrice} RUB
         </Button>

@@ -1,11 +1,18 @@
-export {Button} from "./button"
-export {Checkbox} from "./checkbox"
-export {Dialog, DialogContent, DialogTrigger} from "./dialog"
-export {Input} from "./input"
-export {ScrollArea, ScrollBar} from "./scroll-area"
-export {Select, SelectContent, SelectTrigger, SelectValue, SelectItem} from "./select"
-export {Sheet, SheetContent, SheetTrigger} from "./sheet"
-export {Skeleton} from "./skeleton"
-export {Title} from "./title"
-export {DualRangeSlider} from "./dual-slider"
-export {RadioGroup, RadioGroupItem} from "./radio-group"
+export { Button } from "./button";
+export { Checkbox } from "./checkbox";
+export { Dialog, DialogContent, DialogTrigger } from "./dialog";
+export { Input } from "./input";
+export { Textarea } from "./textarea";
+export { ScrollArea, ScrollBar } from "./scroll-area";
+export {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+  SelectItem,
+} from "./select";
+export { Sheet, SheetContent, SheetTrigger } from "./sheet";
+export { Skeleton } from "./skeleton";
+export { Title } from "./title";
+export { DualRangeSlider } from "./dual-slider";
+export { RadioGroup, RadioGroupItem } from "./radio-group";

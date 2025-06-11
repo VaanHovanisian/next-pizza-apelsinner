@@ -22,3 +22,8 @@ export { IngredientItem } from "./ingredient-item";
 export { BasketButton } from "./basket-button";
 export { Basket } from "./basket";
 export { CountButton } from "./count-button";
+export { WhiteBox } from "./white-box";
+export { CheckoutItemDetails } from "./checkout-item-details";
+export { CheckoutAside } from "./checkout-aside";
+export { ErrorText } from "./error-text";
+export { ResetButton } from "./reset-button";
